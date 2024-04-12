@@ -21,10 +21,13 @@ export async function endpointGenta(
             content: message.content,
         }));
 
-        if (model.name !== "Mistral-7B-Instruct-v0.2") {
-            if (messagesFormatted?.[0]?.role !== "system") {
-                messagesFormatted = [{ role: "system", content: preprompt ?? "" }, ...messagesFormatted];
-            }
+        if (messagesFormatted?.[0]?.role !== "system") {
+            messagesFormatted = [{ role: "system", content: preprompt ?? "" }, ...messagesFormatted];
+        }
+
+        if (model.name === "Mistral-7B-Instruct-v0.2") {
+            // remove system message if model is Mistral-7B-Instruct-v0.2
+            messagesFormatted = messagesFormatted.filter((message) => message.role !== "system");
         }
 
         const parameters = { ...model.parameters, ...generateSettings };
