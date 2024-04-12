@@ -32,6 +32,12 @@ export async function endpointGenta(
 
         const parameters = { ...model.parameters, ...generateSettings };
 
+        // print messages
+        console.log("Messages:");
+        messagesFormatted.forEach((message) => {
+            console.log(`${message.role}: ${message.content}`);
+        });
+
         const payload = JSON.stringify({
             model: model.id ?? model.name,
             messages: messagesFormatted,
@@ -64,10 +70,6 @@ export async function endpointGenta(
 
             while (true) {
                 const out = await reader?.read();
-
-                // print generatedText
-                console.log(out?.value);
-
                 if (out?.done) {
                     const output: TextGenerationStreamOutput = {
                         token: {
