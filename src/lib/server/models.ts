@@ -177,6 +177,8 @@ const addEndpoint = (m: Awaited<ReturnType<typeof processModel>>) => ({
 						return await endpoints.cloudflare(args);
 					case "cohere":
 						return await endpoints.cohere(args);
+					case "genta":
+						return await endpoints.genta(args);
 					default:
 						// for legacy reason
 						return endpoints.tgi(args);

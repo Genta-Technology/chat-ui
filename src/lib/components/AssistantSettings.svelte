@@ -17,7 +17,6 @@
 	import IconInternet from "./icons/IconInternet.svelte";
 	import TokensCounter from "./TokensCounter.svelte";
 	import HoverTooltip from "./HoverTooltip.svelte";
-	import { findCurrentModel } from "$lib/utils/models";
 
 	type ActionData = {
 		error: boolean;
@@ -46,7 +45,11 @@
 		const module = await import("browser-image-resizer");
 		compress = module.readAndCompressImage;
 
-		modelId = findCurrentModel(models, assistant ? assistant.modelId : $settings.activeModel).id;
+		if (assistant) {
+			modelId = assistant.modelId;
+		} else {
+			modelId = models.find((model) => model.id === $settings.activeModel)?.id ?? models[0].id;
+		}
 	});
 
 	let inputMessage1 = assistant?.exampleInputs[0] ?? "";

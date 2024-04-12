@@ -121,7 +121,7 @@
 				>
 					{#if isCopied}
 						<CarbonCheckmark class="text-xxs text-green-600 max-sm:text-xs" />
-						<span class="text-green-600 max-sm:hidden"> Link copied </span>
+						<span class="text-green-600 max-sm:hidden"> Copied </span>
 					{:else}
 						<CarbonExport class="text-xxs max-sm:text-xs" />
 						<span class="max-sm:hidden"> Share </span>
