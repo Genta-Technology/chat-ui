@@ -38,10 +38,8 @@ export async function endpointGenta(
             stream: true,
             temperature: parameters?.temperature,
             top_p: parameters?.top_p,
-            max_tokens: parameters?.max_new_tokens,
+            max_tokens: parameters?.max_tokens,
         });
-        
-        console.log(payload);
 
         const res = await fetch('https://api.genta.tech/v1/chat/completions', {
             method: 'POST',
