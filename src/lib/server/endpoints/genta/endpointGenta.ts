@@ -21,8 +21,10 @@ export async function endpointGenta(
             content: message.content,
         }));
 
-        if (messagesFormatted?.[0]?.role !== "system") {
-            messagesFormatted = [{ role: "system", content: preprompt ?? "" }, ...messagesFormatted];
+        if (model.name !== "Mistral-7B-Instruct-v0.2") {
+            if (messagesFormatted?.[0]?.role !== "system") {
+                messagesFormatted = [{ role: "system", content: preprompt ?? "" }, ...messagesFormatted];
+            }
         }
 
         const parameters = { ...model.parameters, ...generateSettings };
