@@ -65,8 +65,8 @@ export async function endpointGenta(
             while (true) {
                 const out = await reader?.read();
 
-                // print generated text
-                console.log(generatedText);
+                // print generatedText
+                console.log(out?.value);
 
                 if (out?.done) {
                     const output: TextGenerationStreamOutput = {
