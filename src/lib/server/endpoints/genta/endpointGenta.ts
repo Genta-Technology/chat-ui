@@ -32,12 +32,6 @@ export async function endpointGenta(
 
         const parameters = { ...model.parameters, ...generateSettings };
 
-        // print messages
-        console.log("Messages:");
-        messagesFormatted.forEach((message) => {
-            console.log(`${message.role}: ${message.content}`);
-        });
-
         const payload = JSON.stringify({
             model: model.id ?? model.name,
             messages: messagesFormatted,
@@ -46,6 +40,8 @@ export async function endpointGenta(
             top_p: parameters?.top_p,
             max_tokens: parameters?.max_new_tokens,
         });
+        
+        console.log(payload);
 
         const res = await fetch('https://api.genta.tech/v1/chat/completions', {
             method: 'POST',
