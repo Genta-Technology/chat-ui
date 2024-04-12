@@ -36,7 +36,7 @@ export async function endpointGenta(
             max_tokens: parameters?.max_new_tokens,
         });
 
-        const res = await fetch('httpsL//api.genta.tech/v1/chat/completions', {
+        const res = await fetch('https://api.genta.tech/v1/chat/completions', {
             method: 'POST',
             headers: {
                 'Authorization': `${apiKey}`,
